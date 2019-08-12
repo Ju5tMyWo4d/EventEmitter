@@ -1,1 +1,7 @@
 # Project exclude paths
+EventEmitter.js
+EventEmitter.d.ts
+./example/main.js
+./example/main.d.ts
+.gitignore
+tsconfig.json

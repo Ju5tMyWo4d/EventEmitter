@@ -1,10 +1,10 @@
 /**
- * @template C type of context
  * @template T event_name -> event_type map
+ * @template C type of context
  */
-export default class EventEmitter<C, T> {
+export default class EventEmitter<T, C = undefined> {
     private readonly context: C;
-    private readonly binds = <EventBinder<C, T>>{};
+    private readonly binds = <EventBinder<T, C>>{};
 
     constructor(context?: C) {
         this.context = context;
@@ -24,4 +24,4 @@ export default class EventEmitter<C, T> {
     }
 }
 
-type EventBinder<C, T> = {[K in keyof T]: ((this: C, event: T[K]) => any)[]};
+type EventBinder<T, C> = {[K in keyof T]: ((this: C, event: T[K]) => any)[]};

@@ -13,7 +13,7 @@ interface ExampleEventsMap {
     event_2: ExampleEvent;
 }
 
-class Example extends EventEmitter<HTMLElement, ExampleEventsMap> {
+class Example extends EventEmitter<ExampleEventsMap, HTMLElement> {
     constructor() {
         super(document.getElementById("example"));
 
