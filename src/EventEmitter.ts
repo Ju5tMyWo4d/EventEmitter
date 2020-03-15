@@ -29,7 +29,7 @@ export default class EventEmitter<T, C = undefined> {
         for(let listener of this.binds[type]) {
             listener.call(this.context, event);
         }
-        
+
         for(let listener of this.bindsOnce[type]) {
             listener.call(this.context, event);
         }
