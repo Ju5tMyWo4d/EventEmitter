@@ -1,4 +1,4 @@
-import EventEmitter from "../EventEmitter.js";
+import EventEmitter from "../src/EventEmitter.js";
 
 class ExampleEvent {
     param: number;

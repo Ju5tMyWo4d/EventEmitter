@@ -1,0 +1,20 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "experimentalDecorators": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "sourceMap": true,
+    "removeComments": true,
+    "declaration": true,
+    "downlevelIteration": true,
+    "stripInternal": true,
+    "outDir": "../dist"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
