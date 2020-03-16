@@ -54,7 +54,9 @@ export default class EventEmitter<T, C = undefined> {
         if(listener === undefined) {
             delete this.binds[type];
         } else {
-            this.binds[type].splice(this.binds[type].indexOf(listener), 1);
+            if(this.binds[type].includes(listener)) {
+                this.binds[type].splice(this.binds[type].indexOf(listener), 1);
+            }
         }
 
         return this;
@@ -66,14 +68,18 @@ export default class EventEmitter<T, C = undefined> {
      * @param [event]
      */
     emit<K extends keyof T>(type: K, event?: T[K]) {
-        for(let listener of this.binds[type]) {
-            listener.call(this.context, event);
+        if(this.binds[type] !== undefined) {
+            for(let listener of this.binds[type]) {
+                listener.call(this.context, event);
+            }
         }
 
-        let onceEvents = this.bindsOnce[type];
-        delete this.bindsOnce[type];
-        for(let listener of onceEvents) {
-            listener.call(this.context, event);
+        if(this.bindsOnce[type] !== undefined) {
+            let onceEvents = this.bindsOnce[type];
+            delete this.bindsOnce[type];
+            for(let listener of onceEvents) {
+                listener.call(this.context, event);
+            }
         }
     }
 }

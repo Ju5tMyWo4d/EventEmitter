@@ -1,0 +1,20 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2017",
+    "strict": true,
+    "experimentalDecorators": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "sourceMap": true,
+    "removeComments": true,
+    "declaration": true,
+    "downlevelIteration": true,
+    "stripInternal": true,
+    "outDir": "../../test/EventEmitter"
+  },
+  "include": [
+    "../"
+  ]
+}

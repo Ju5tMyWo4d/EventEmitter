@@ -23,18 +23,24 @@ export default class EventEmitter {
             delete this.binds[type];
         }
         else {
-            this.binds[type].splice(this.binds[type].indexOf(listener), 1);
+            if (this.binds[type].includes(listener)) {
+                this.binds[type].splice(this.binds[type].indexOf(listener), 1);
+            }
         }
         return this;
     }
     emit(type, event) {
-        for (let listener of this.binds[type]) {
-            listener.call(this.context, event);
+        if (this.binds[type] !== undefined) {
+            for (let listener of this.binds[type]) {
+                listener.call(this.context, event);
+            }
         }
-        let onceEvents = this.bindsOnce[type];
-        delete this.bindsOnce[type];
-        for (let listener of onceEvents) {
-            listener.call(this.context, event);
+        if (this.bindsOnce[type] !== undefined) {
+            let onceEvents = this.bindsOnce[type];
+            delete this.bindsOnce[type];
+            for (let listener of onceEvents) {
+                listener.call(this.context, event);
+            }
         }
     }
 }

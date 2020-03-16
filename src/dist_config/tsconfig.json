@@ -1,8 +1,8 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "target": "esnext",
     "module": "esnext",
+    "target": "es2017",
     "strict": true,
     "experimentalDecorators": true,
     "noFallthroughCasesInSwitch": true,
@@ -12,9 +12,9 @@
     "declaration": true,
     "downlevelIteration": true,
     "stripInternal": true,
-    "outDir": "../dist"
+    "outDir": "../../dist"
   },
-  "exclude": [
-    "node_modules"
+  "include": [
+    "../"
   ]
 }
