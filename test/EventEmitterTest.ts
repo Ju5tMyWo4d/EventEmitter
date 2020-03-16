@@ -84,12 +84,30 @@ describe('EventEmitterTest', () => {
             assert.deepEqual(a, [1, 2]);
         });
     });
+
+    describe('pass event', () => {
+        it('simple types', () => {
+            let a = [];
+            eventEmitter.once('event2', (num) => {a.push(num)});
+            eventEmitter.emit('event2', 1);
+            assert.deepEqual(a, [1]);
+        });
+
+        it('object', () => {
+            let a = [];
+            eventEmitter.once('event3', (num) => {a.push(num.a)});
+            eventEmitter.emit('event3', {a:1});
+            assert.deepEqual(a, [1]);
+        });
+    });
 });
 
 
 
 interface TestEventsMap {
     event1: undefined,
+    event2: number,
+    event3: Object
 }
 
 class TestEmitter extends EventEmitter<TestEventsMap> {}
