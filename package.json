@@ -1,0 +1,30 @@
+{
+  "name": "eventemitter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/EventEmitter.js",
+  "type": "module",
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ju5tMyWo4d/EventEmitter.git"
+  },
+  "author": "Ju5tMyWo4d",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ju5tMyWo4d/EventEmitter/issues"
+  },
+  "homepage": "https://github.com/Ju5tMyWo4d/EventEmitter#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.9.1",
+    "mocha": "^7.1.0"
+  }
+}

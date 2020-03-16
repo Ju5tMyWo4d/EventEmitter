@@ -1,4 +1,6 @@
-export default class EventEmitter<T, C = undefined> {
+export default class EventEmitter<T = {
+    [key: string]: undefined;
+}, C = undefined> {
     private readonly context;
     private readonly binds;
     private readonly bindsOnce;

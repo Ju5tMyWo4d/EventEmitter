@@ -1,7 +1,7 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "module": "esnext",
+    "module": "commonjs",
     "target": "es2017",
     "strict": true,
     "experimentalDecorators": true,
@@ -12,9 +12,9 @@
     "declaration": true,
     "downlevelIteration": true,
     "stripInternal": true,
-    "outDir": "../../dist"
+    "outDir": "../../test/EventEmitter"
   },
   "include": [
-    "../"
+    "../../src/"
   ]
 }

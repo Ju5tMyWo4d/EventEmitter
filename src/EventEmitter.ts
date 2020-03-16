@@ -1,8 +1,8 @@
 /**
- * @template T - map of (event name => type of event param in listener)
+ * @template [T] - map of (event name => type of event param in listener)
  * @template [C] - type of context for listeners, if not specified context is set to this EventEmitter
  */
-export default class EventEmitter<T, C = undefined> {
+export default class EventEmitter<T = {[key: string]: undefined}, C = undefined> {
     private readonly context: C | this;
     private readonly binds = <EventBinder<T, C>>{};
     private readonly bindsOnce = <EventBinder<T, C>>{};
