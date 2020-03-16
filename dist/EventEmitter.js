@@ -2,7 +2,7 @@ export default class EventEmitter {
     constructor(context) {
         this.binds = {};
         this.bindsOnce = {};
-        this.context = context;
+        this.context = context || {};
     }
     on(type, listener) {
         if (this.binds[type] === undefined) {

@@ -7,8 +7,8 @@ export default class EventEmitter<T, C = undefined> {
     private readonly binds = <EventBinder<T, C>>{};
     private readonly bindsOnce = <EventBinder<T, C>>{};
 
-    constructor(context: C) {
-        this.context = context;
+    constructor(context?: C) {
+        this.context = context || <C>{};
     }
 
     on<K extends keyof T>(type: K, listener: (this: C, event?: T[K]) => any) {
