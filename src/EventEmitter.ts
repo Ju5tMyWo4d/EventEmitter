@@ -5,7 +5,6 @@
 export default class EventEmitter<T = {[key: string]: undefined}, C = undefined> {
     private readonly context: C | this;
     private readonly binds = <EventBinder<T, C>>{};
-    private readonly bindsOnce = <EventBinder<T, C>>{};
 
     /**
      * @param [context=this] - context for listeners
@@ -36,10 +35,12 @@ export default class EventEmitter<T = {[key: string]: undefined}, C = undefined>
      * @return this
      */
     once<K extends keyof T>(type: K, listener: EventListener<T, K, C>): this {
-        if(this.bindsOnce[type] === undefined) {
-            this.bindsOnce[type] = [];
-        }
-        this.bindsOnce[type].push(listener);
+        let l = (event?: T[K]) => {
+            listener.call(this.context, event);
+            this.off(type, l);
+        };
+
+        this.on(type, l);
 
         return this;
     }
@@ -69,15 +70,9 @@ export default class EventEmitter<T = {[key: string]: undefined}, C = undefined>
      */
     emit<K extends keyof T>(type: K, event?: T[K]) {
         if(this.binds[type] !== undefined) {
-            for(let listener of this.binds[type]) {
-                listener.call(this.context, event);
-            }
-        }
+            let listeners = this.binds[type].slice();
 
-        if(this.bindsOnce[type] !== undefined) {
-            let onceEvents = this.bindsOnce[type];
-            delete this.bindsOnce[type];
-            for(let listener of onceEvents) {
+            for(let listener of listeners) {
                 listener.call(this.context, event);
             }
         }

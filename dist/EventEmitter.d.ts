@@ -3,7 +3,6 @@ export default class EventEmitter<T = {
 }, C = undefined> {
     private readonly context;
     private readonly binds;
-    private readonly bindsOnce;
     constructor(context?: C);
     on<K extends keyof T>(type: K, listener: EventListener<T, K, C>): this;
     once<K extends keyof T>(type: K, listener: EventListener<T, K, C>): this;

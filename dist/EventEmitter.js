@@ -1,7 +1,6 @@
 export default class EventEmitter {
     constructor(context) {
         this.binds = {};
-        this.bindsOnce = {};
         this.context = context ? context : this;
     }
     on(type, listener) {
@@ -12,10 +11,11 @@ export default class EventEmitter {
         return this;
     }
     once(type, listener) {
-        if (this.bindsOnce[type] === undefined) {
-            this.bindsOnce[type] = [];
-        }
-        this.bindsOnce[type].push(listener);
+        let l = (event) => {
+            listener.call(this.context, event);
+            this.off(type, l);
+        };
+        this.on(type, l);
         return this;
     }
     off(type, listener) {
@@ -31,14 +31,8 @@ export default class EventEmitter {
     }
     emit(type, event) {
         if (this.binds[type] !== undefined) {
-            for (let listener of this.binds[type]) {
-                listener.call(this.context, event);
-            }
-        }
-        if (this.bindsOnce[type] !== undefined) {
-            let onceEvents = this.bindsOnce[type];
-            delete this.bindsOnce[type];
-            for (let listener of onceEvents) {
+            let listeners = this.binds[type].slice();
+            for (let listener of listeners) {
                 listener.call(this.context, event);
             }
         }
