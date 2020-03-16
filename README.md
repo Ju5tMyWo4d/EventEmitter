@@ -1,6 +1,6 @@
-#EventEmitter
+# EventEmitter
 Simple event emitter suitable for browsers.
-##Showcase
+## Showcase
 ```js
 const myEmitter = new EventEmitter();
 
@@ -31,7 +31,7 @@ prints:
 2
 */
 ```
-##About
+## About
 It is written in TypeScript so you can specify map interface of event types and pass it through generics (example in `/example`).
 
 In `/dist` you can find js code transpiled from TypeScript to ES6. 
